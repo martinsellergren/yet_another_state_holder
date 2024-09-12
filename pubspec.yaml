@@ -1,0 +1,20 @@
+name: yet_another_state_holder
+description: "Yet another state holder."
+version: 0.1.0
+repository: https://github.com/martinsellergren/yet_another_state_holder
+
+environment:
+  sdk: ^3.5.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rxdart: ^0.28.0
+  shared_preferences: ^2.3.2
+  state_notifier: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
