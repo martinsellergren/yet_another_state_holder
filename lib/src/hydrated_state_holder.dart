@@ -7,28 +7,29 @@ import 'state_holder.dart';
 class HydratedStateHolder<T> extends StateHolder<T> {
   final SharedPreferences _sharedPreferences;
   final Map<String, dynamic> Function(T state) _stateToJson;
-  final String storageKey;
+  final String _storageKey;
 
-  HydratedStateHolder(
-    T state, {
+  HydratedStateHolder({
+    required T initialState,
     required SharedPreferences sharedPreferences,
     required Map<String, dynamic> Function(T state) stateToJson,
     required T Function(Map<String, dynamic> json) stateFromJson,
-    required this.storageKey,
+    required String storageKey,
   })  : _sharedPreferences = sharedPreferences,
         _stateToJson = stateToJson,
+        _storageKey = storageKey,
         super(sharedPreferences.restore(
               key: storageKey,
               stateFromJson: stateFromJson,
             ) ??
-            state);
+            initialState);
 
   @override
   set state(T value) {
     if (!mounted) return;
     super.state = value;
     _sharedPreferences.store(
-      key: storageKey,
+      key: _storageKey,
       state: value,
       stateToJson: _stateToJson,
     );
