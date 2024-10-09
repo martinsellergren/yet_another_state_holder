@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Relax version of shared preferences.
+
 ## 0.2.1
 
 * Relax dart sdk version.
