@@ -1,3 +1,7 @@
+## 0.2.4
+
+* Clean up error log.
+
 ## 0.2.3
 
 * hydration: Fall back to initial state if error during parsing stored state.

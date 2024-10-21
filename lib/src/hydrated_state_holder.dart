@@ -56,9 +56,9 @@ extension on SharedPreferences {
         : () {
             try {
               return stateFromJson(jsonDecode(json));
-            } catch (e, s) {
+            } catch (e) {
               debugPrint(
-                  'yet_another_state_holder: Error when restoring state from persistent storage for json: $json\n$e\n$s');
+                  'yet_another_state_holder: Failed to restoring state from persistent storage, e=$e, json=$json');
               return null;
             }
           }();
