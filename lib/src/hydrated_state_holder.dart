@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'state_holder.dart';
@@ -50,6 +51,16 @@ extension on SharedPreferences {
     required T Function(Map<String, dynamic>) stateFromJson,
   }) {
     final json = getString(key);
-    return json == null ? null : stateFromJson(jsonDecode(json));
+    return json == null
+        ? null
+        : () {
+            try {
+              return stateFromJson(jsonDecode(json));
+            } catch (e, s) {
+              debugPrint(
+                  'yet_another_state_holder: Error when restoring state from persistent storage for json: $json\n$e\n$s');
+              return null;
+            }
+          }();
   }
 }

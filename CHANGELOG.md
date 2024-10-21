@@ -1,3 +1,7 @@
+## 0.2.3
+
+* hydration: Fall back to initial state if error during parsing stored state.
+
 ## 0.2.2
 
 * Relax version of shared preferences.
