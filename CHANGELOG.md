@@ -1,3 +1,7 @@
+## 0.2.5
+
+* Don't condition setting state with mounted.
+
 ## 0.2.4
 
 * Clean up error log.
