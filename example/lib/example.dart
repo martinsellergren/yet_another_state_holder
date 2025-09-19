@@ -16,6 +16,6 @@ class Bloc extends StateHolder<UiState> {
 
   void _init() async {
     await Future.delayed(const Duration(seconds: 1));
-    setState((old) => old.copyWith(isLoaded: true));
+    setState((state) => state.copyWith(isLoaded: true));
   }
 }

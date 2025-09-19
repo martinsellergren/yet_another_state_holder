@@ -13,7 +13,7 @@ class StateHolder<T> extends StateNotifier<T> {
   @override
   set state(T value) => super.state = value;
 
-  void setState(T Function(T old) fn) {
+  void setState(T Function(T state) fn) {
     if (!mounted) return;
     state = fn(state);
   }

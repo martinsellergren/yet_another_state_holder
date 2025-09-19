@@ -1,3 +1,7 @@
+## 0.3.1
+
+* Style
+
 ## 0.3.0
 
 * Breaking: Use setState instead of state setter
