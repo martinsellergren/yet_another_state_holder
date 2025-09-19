@@ -1,3 +1,8 @@
+## 0.3.0
+
+* Breaking: Use setState instead of state setter
+* Add example
+
 ## 0.2.5
 
 * Don't condition setting state with mounted.
