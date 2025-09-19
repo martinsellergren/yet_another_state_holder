@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Remove dependencies (and some redundant api along with it)
+
 ## 0.2.5
 
 * Don't condition setting state with mounted.

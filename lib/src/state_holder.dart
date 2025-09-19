@@ -1,12 +1,31 @@
-import 'package:rxdart/rxdart.dart';
-import 'package:state_notifier/state_notifier.dart';
+import 'dart:async';
 
-class StateHolder<T> extends StateNotifier<T> {
-  StateHolder(super.state);
+class StateHolder<T> {
+  final _streamController = StreamController<T>.broadcast();
+  bool _mounted = true;
 
-  // visible to anyone, unlike super's
-  @override
-  T get state => super.state;
+  T _state;
 
-  Stream<T> get startedStream => stream.startWith(state);
+  StateHolder(this._state);
+
+  void dispose() {
+    _mounted = false;
+    _streamController.close();
+  }
+
+  T get state => _state;
+
+  set state(T nw) {
+    if (state == nw || !mounted) return;
+    _state = nw;
+    _streamController.add(nw);
+  }
+
+  Stream<T> get stream => _streamController.stream;
+  bool get mounted => _mounted;
+
+  Stream<T> get startedStream async* {
+    yield state;
+    yield* stream;
+  }
 }
