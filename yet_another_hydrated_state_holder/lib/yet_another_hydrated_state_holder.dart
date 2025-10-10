@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'state_holder.dart';
+import 'package:yet_another_state_holder/yet_another_state_holder.dart';
 
 class HydratedStateHolder<T> extends StateHolder<T> {
   final SharedPreferences _sharedPreferences;

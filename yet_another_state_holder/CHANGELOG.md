@@ -1,6 +1,12 @@
+## 0.5.0
+
+* Remove flutter dependency.
+* Break out hydrated state holder.
+* Restructure.
+
 ## 0.4.0
 
-* Remove dependencies (and some redundant api along with it)
+* Remove dependencies (and some redundant api along with it).
 
 ## 0.2.5
 

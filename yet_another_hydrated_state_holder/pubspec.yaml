@@ -1,6 +1,6 @@
-name: yet_another_state_holder
-description: "Yet another state holder."
-version: 0.4.0
+name: yet_another_hydrated_state_holder
+description: Yet another hydrated state holder.
+version: 0.1.0
 repository: https://github.com/martinsellergren/yet_another_state_holder
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.0
+  yet_another_state_holder: ^0.5.0
 
 dev_dependencies:
   flutter_test:

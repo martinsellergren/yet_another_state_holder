@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+    invalid_visibility_annotation: ignore
+
+linter:
+  rules:
+    prefer_relative_imports: true
+    avoid_function_literals_in_foreach_calls: false
