@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
+
 class StateHolder<T> {
   final _streamController = StreamController<T>.broadcast();
   bool _mounted = true;
@@ -8,6 +10,7 @@ class StateHolder<T> {
 
   StateHolder(this._state);
 
+  @mustCallSuper
   void dispose() {
     _mounted = false;
     _streamController.close();

@@ -1,3 +1,8 @@
+## 0.5.1
+
+* Relax sdk constraint.
+* Add @mustCallSuper to dispose.
+
 ## 0.5.0
 
 * Remove flutter dependency.
