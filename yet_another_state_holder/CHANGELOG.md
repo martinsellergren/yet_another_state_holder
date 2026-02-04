@@ -1,3 +1,7 @@
+## 0.5.3
+
+* Fix state getter annotation, set to @protected
+
 ## 0.5.2
 
 * Add @visibleForTesting for state setter.
