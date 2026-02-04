@@ -1,6 +1,6 @@
 name: yet_another_state_holder
 description: Yet another state holder.
-version: 0.5.1
+version: 0.5.2
 repository: https://github.com/martinsellergren/yet_another_state_holder
 
 environment:

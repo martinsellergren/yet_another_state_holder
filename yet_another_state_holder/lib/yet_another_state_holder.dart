@@ -18,6 +18,7 @@ class StateHolder<T> {
 
   T get state => _state;
 
+  @visibleForTesting
   set state(T nw) {
     if (state == nw || !mounted) return;
     _state = nw;

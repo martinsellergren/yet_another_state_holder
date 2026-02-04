@@ -1,3 +1,7 @@
+## 0.5.2
+
+* Add @visibleForTesting for state setter.
+
 ## 0.5.1
 
 * Relax sdk constraint.
