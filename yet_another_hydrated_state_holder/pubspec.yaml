@@ -1,19 +1,15 @@
 name: yet_another_hydrated_state_holder
 description: Yet another hydrated state holder.
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/martinsellergren/yet_another_state_holder
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=1.17.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  shared_preferences: ^2.0.0
+  hive_ce: ^2.0.0
   yet_another_state_holder: ^0.5.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  test: ^1.25.6
   flutter_lints: ^6.0.0

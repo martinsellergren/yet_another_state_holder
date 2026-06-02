@@ -1,24 +1,24 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:yet_another_state_holder/yet_another_state_holder.dart';
 
 class HydratedStateHolder<T> extends StateHolder<T> {
-  final SharedPreferences _sharedPreferences;
+  final Box<String> _box;
   final Map<String, dynamic> Function(T state) _stateToJson;
   final String _storageKey;
 
   HydratedStateHolder({
     required T initialState,
-    required SharedPreferences sharedPreferences,
+    required Box<String> box,
     required Map<String, dynamic> Function(T state) stateToJson,
     required T Function(Map<String, dynamic> json) stateFromJson,
     required String storageKey,
-  })  : _sharedPreferences = sharedPreferences,
+  })  : _box = box,
         _stateToJson = stateToJson,
         _storageKey = storageKey,
-        super(sharedPreferences.restore(
+        super(box.restore(
               key: storageKey,
               stateFromJson: stateFromJson,
             ) ??
@@ -28,7 +28,7 @@ class HydratedStateHolder<T> extends StateHolder<T> {
   set state(T value) {
     if (!mounted) return;
     super.state = value;
-    _sharedPreferences.store(
+    _box.store(
       key: _storageKey,
       state: value,
       stateToJson: _stateToJson,
@@ -36,28 +36,27 @@ class HydratedStateHolder<T> extends StateHolder<T> {
   }
 }
 
-extension on SharedPreferences {
+extension on Box<String> {
   void store<T>({
     required String key,
     required T state,
     required Map<String, dynamic> Function(T) stateToJson,
   }) {
-    setString(key, jsonEncode(stateToJson(state)));
+    put(key, jsonEncode(stateToJson(state)));
   }
 
   T? restore<T>({
     required String key,
     required T Function(Map<String, dynamic>) stateFromJson,
   }) {
-    final json = getString(key);
+    final json = get(key);
     return json == null
         ? null
         : () {
             try {
               return stateFromJson(jsonDecode(json));
             } catch (e) {
-              debugPrint(
-                  'yet_another_state_holder: Failed to restoring state from persistent storage, e=$e, json=$json');
+              log('<yet_another_state_holder> Failed to restoring state from persistent storage, e=$e, json=$json');
               return null;
             }
           }();
