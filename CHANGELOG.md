@@ -1,3 +1,7 @@
+## 0.5.4
+
+* Add hydrated state holder again (this time without any dependencies)
+
 ## 0.5.3
 
 * Fix state getter annotation, set to @protected
