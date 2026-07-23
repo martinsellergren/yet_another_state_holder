@@ -1,3 +1,7 @@
+## 0.5.5
+
+* Expose store/restore on StateStore
+
 ## 0.5.4
 
 * Add hydrated state holder again (this time without any dependencies)

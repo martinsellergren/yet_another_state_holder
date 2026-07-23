@@ -15,36 +15,38 @@ class HydratedStateHolder<T> extends StateHolder<T> {
     required Map<String, dynamic> Function(T state) stateToJson,
     required T Function(Map<String, dynamic> json) stateFromJson,
     required String storageKey,
-  }) : _store = store,
-       _stateToJson = stateToJson,
-       _storageKey = storageKey,
-       super(
-         store.restore(key: storageKey, stateFromJson: stateFromJson) ??
-             initialState,
-       );
+  })  : _store = store,
+        _stateToJson = stateToJson,
+        _storageKey = storageKey,
+        super(
+          store.restoreHydrated(
+                  storageKey: storageKey, stateFromJson: stateFromJson) ??
+              initialState,
+        );
 
   @override
   set state(T value) {
     if (!mounted) return;
     super.state = value;
-    _store.store(key: _storageKey, state: value, stateToJson: _stateToJson);
+    _store.storeForHydration(
+        storageKey: _storageKey, state: value, stateToJson: _stateToJson);
   }
 }
 
-extension on StateStore {
-  void store<T>({
-    required String key,
+extension HydratedStateHolderStateStore on StateStore {
+  void storeForHydration<T>({
+    required String storageKey,
     required T state,
-    required Map<String, dynamic> Function(T) stateToJson,
+    required Map<String, dynamic> Function(T state) stateToJson,
   }) {
-    put(key, jsonEncode(stateToJson(state)));
+    put(storageKey, jsonEncode(stateToJson(state)));
   }
 
-  T? restore<T>({
-    required String key,
-    required T Function(Map<String, dynamic>) stateFromJson,
+  T? restoreHydrated<T>({
+    required String storageKey,
+    required T Function(Map<String, dynamic> json) stateFromJson,
   }) {
-    final json = get(key);
+    final json = get(storageKey);
     return json == null
         ? null
         : () {
