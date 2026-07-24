@@ -24,9 +24,10 @@ class HydratedStateHolder<T> extends StateHolder<T> {
               initialState,
         );
 
-  void disposeAndClearStorage() {
-    dispose();
-    _store.remove(_storageKey);
+  @override
+  void dispose({bool clearStorage = false}) {
+    if (clearStorage) _store.remove(_storageKey);
+    super.dispose();
   }
 
   @override

@@ -1,3 +1,7 @@
+## 0.7.0
+
+* Tweak dispose and clear storage
+
 ## 0.6.0
 
 * HydratedStateHolder: add disposeAndClearStorage
