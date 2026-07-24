@@ -10,4 +10,9 @@ class InMemoryStore implements StateStore {
   void put(String key, String value) {
     _map[key] = value;
   }
+
+  @override
+  void remove(String key) {
+    _map.remove(key);
+  }
 }
